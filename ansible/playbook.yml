@@ -1,0 +1,11 @@
+---
+- name: ansible
+  hosts: server
+  
+  tasks:  
+    - name: mesage
+      debug: msg="Hello World"
+    - name: deploy a default page
+      template: src=default.html.j2 dest=/default.html 
+
+
