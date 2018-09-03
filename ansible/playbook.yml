@@ -1,11 +1,19 @@
 ---
 - name: ansible
-  hosts: server
+  hosts: ec2-server
+  remote_user: yunjunma
   
   tasks:  
     - name: mesage
       debug: msg="Hello World"
-    - name: deploy a default page
-      template: src=default.html.j2 dest=/default.html 
+
+    - name: start Nginx
+      apt: name=nginx state=latest
+      service:
+          name: nginx
+          state: started
+
+    - name: deploy a default html page
+      template: src=default.html.j2 dest=/var/www/html/default.html
 
 
