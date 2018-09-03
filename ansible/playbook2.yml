@@ -1,18 +1,14 @@
 ---
-- name: ansible
+- name: undeploy
   hosts: ec2-server
   remote_user: yunjunma
   
   tasks:  
     - name: mesage
-      debug: msg="Hello World"
+      debug: msg="undeploy the server"
 
-    - name: set Nginx
-      apt: pkg=nginx state=present update_cache=true
-      become: true
+    - name: stop the Nginx
+      apt: name=nginx state=absent
 
-    - name: deploy a default html page
-      template: src=default.html.j2 dest=/default.html
-      become: true
 
 
