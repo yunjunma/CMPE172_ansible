@@ -1,14 +1,15 @@
 ---
 - name: undeploy
   hosts: ec2-server
-  remote_user: yunjunma
+  remote_user: ubuntu
   
   tasks:  
     - name: mesage
       debug: msg="undeploy the server"
 
     - name: stop the Nginx
-      apt: name=nginx state=absent
+      become: true
+      service: name=nginx state=stopped
 
 
 
